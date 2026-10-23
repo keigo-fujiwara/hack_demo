@@ -1,0 +1,62 @@
+/* みらい商事 社内ポータル 訓練用サンドボックス */
+:root{
+  --bg:#eef2f7; --card:#ffffff; --ink:#1f2933; --muted:#64748b;
+  --line:#dbe3ec; --brand:#1d4ed8; --brand-dark:#1e3a8a;
+  --warn-bg:#fff7cc; --warn-line:#e4c200; --warn-ink:#7a5b00;
+  --ok:#15803d; --danger:#b91c1c;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:"Hiragino Sans","Yu Gothic UI",Meiryo,system-ui,sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.7;
+}
+.trainbar{
+  background:var(--warn-bg); color:var(--warn-ink); border-bottom:2px solid var(--warn-line);
+  padding:8px 16px; font-size:13px; text-align:center; font-weight:600;
+}
+header.site{
+  background:linear-gradient(135deg,var(--brand),var(--brand-dark)); color:#fff;
+  padding:16px 20px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+}
+header.site .logo{font-weight:800; font-size:20px; letter-spacing:.5px}
+header.site .sub{opacity:.85; font-size:13px}
+nav.main{background:var(--brand-dark); padding:0 12px}
+nav.main a{color:#dbeafe; text-decoration:none; display:inline-block; padding:10px 14px; font-size:14px}
+nav.main a:hover{background:rgba(255,255,255,.12); color:#fff}
+.wrap{max-width:960px; margin:24px auto; padding:0 16px}
+.card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px 22px; margin-bottom:20px; box-shadow:0 1px 3px rgba(16,24,40,.06)}
+.card h2{margin:0 0 10px; font-size:18px; color:var(--brand-dark)}
+.muted{color:var(--muted); font-size:13px}
+.login{max-width:360px}
+.login label{display:block; font-size:13px; margin:10px 0 4px; color:var(--muted)}
+.login input{width:100%; padding:10px; border:1px solid var(--line); border-radius:8px; font-size:15px}
+.btn{margin-top:14px; width:100%; padding:11px; background:var(--brand); color:#fff; border:none; border-radius:8px; font-size:15px; font-weight:700; cursor:pointer}
+.btn:hover{background:var(--brand-dark)}
+.result{margin-top:14px; padding:12px; border-radius:8px; font-size:14px; display:none}
+.result.ok{display:block; background:#dcfce7; color:var(--ok); border:1px solid #86efac}
+.result.ng{display:block; background:#fee2e2; color:var(--danger); border:1px solid #fca5a5}
+.flag{font-family:ui-monospace,Menlo,Consolas,monospace; background:#0f172a; color:#7dd3fc; padding:2px 8px; border-radius:6px; font-size:13px}
+table{width:100%; border-collapse:collapse; font-size:14px}
+th,td{border:1px solid var(--line); padding:8px 10px; text-align:left}
+th{background:#f1f5f9}
+a.rowlink{color:var(--brand); text-decoration:none; font-weight:600}
+a.rowlink:hover{text-decoration:underline}
+.news li{margin-bottom:6px}
+.badge{display:inline-block; background:#fde68a; color:#78350f; font-size:11px; padding:2px 8px; border-radius:999px; font-weight:700; vertical-align:middle}
+footer.site{color:var(--muted); font-size:12px; text-align:center; padding:24px 16px}
+.callout{background:#eff6ff; border-left:4px solid var(--brand); padding:12px 14px; border-radius:6px; font-size:14px; margin-top:12px}
+.secret-box{background:#f8fafc; border:1px dashed var(--line); border-radius:8px; padding:12px; font-family:ui-monospace,monospace; font-size:12px; word-break:break-all; color:var(--muted)}
+
+/* ダークモード対応（システム設定に追従） */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f172a; --card:#1e293b; --ink:#e2e8f0; --muted:#94a3b8;
+    --line:#334155; --brand:#60a5fa; --brand-dark:#1e40af;
+    --warn-bg:#3b2f0a; --warn-line:#a16207; --warn-ink:#fde68a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f172a; --card:#1e293b; --ink:#e2e8f0; --muted:#94a3b8;
+  --line:#334155; --brand:#60a5fa; --brand-dark:#1e40af;
+  --warn-bg:#3b2f0a; --warn-line:#a16207; --warn-ink:#fde68a;
+}

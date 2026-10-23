@@ -1,0 +1,8 @@
+# みらい商事 社内ポータル robots.txt
+# 検索エンジンにインデックスされたくないページをここに書いています。
+# （※これは「見せない」ための仕組みではありません。誰でも読めます！）
+
+User-agent: *
+Disallow: /kanri-dashboard.html
+Disallow: /shain/
+Disallow: /backup/

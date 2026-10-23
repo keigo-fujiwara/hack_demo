@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>管理ダッシュボード（訓練用）</title>
+<link rel="stylesheet" href="css/style.css"></head>
+<body><div class="trainbar">⚠️ これはセキュリティ学習用の<strong>架空の訓練サイト</strong>です。表示される会社名・氏名・データはすべてダミーです。</div>
+<header class="site">
+  <div class="logo">みらい商事株式会社</div>
+  <div class="sub">社内ポータル / Employee Portal</div>
+</header>
+<nav class="main">
+  <a href="index.html">ホーム</a>
+  <a href="index.html#news">お知らせ</a>
+  <a href="index.html#link">社内リンク</a>
+  <a href="index.html#login">ログイン</a>
+</nav>
+<div class="wrap">
+  <div class="card">
+    <h2>🔓 管理ダッシュボード</h2>
+    <div class="callout">
+      このページはログインしていなくても開けてしまいました。
+      <code>robots.txt</code> に「見せたくない」と書いても、URLを知っていれば誰でもアクセスできます。
+    </div>
+    <p style="margin-top:12px">🏁 ミッション2クリア： <span class="flag">FLAG{ROBOTS_IS_NOT_SECURITY}</span></p>
+  </div>
+
+  <div class="card">
+    <h2>社員名簿（管理者用）</h2>
+    <p class="muted">各行をクリックすると個人情報ページが開きます。URLの番号に注目…</p>
+    <table>
+      <tr><th>社員ID</th><th>氏名</th><th>部署</th><th>詳細</th></tr>
+      <tr><td>1001</td><td>田中 太郎</td><td>営業部</td><td><a class="rowlink" href="shain/1001.html">開く</a></td></tr>
+      <tr><td>1002</td><td>佐藤 花子</td><td>情報システム部</td><td><a class="rowlink" href="shain/1002.html">開く</a></td></tr>
+      <tr><td>1003</td><td>鈴木 一郎</td><td>人事部（給与担当）</td><td><a class="rowlink" href="shain/1003.html">開く</a></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>ネタばらし＆守り方</h2>
+    <p>全部のフラグを集めたら、こちらで答え合わせと「どう防ぐか」を確認できます。</p>
+    <p><a class="rowlink" href="kaisetsu.html">→ 解説ページへ</a></p>
+  </div>
+</div>
+<footer class="site">© みらい商事株式会社（架空）｜訓練用サンドボックス</footer>
+<script src="js/app.js"></script></body></html>
