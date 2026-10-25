@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>みらい商事 社内ポータル（訓練用）</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="trainbar">⚠️ これはセキュリティ学習用の<strong>架空の訓練サイト</strong>です。表示される会社名・氏名・データはすべてダミーです。本物のデータベースには接続していません。</div>
+<header class="site">
+  <div class="logo">みらい商事株式会社</div>
+  <div class="sub">社内ポータル / Employee Portal</div>
+</header>
+<nav class="main">
+  <a href="index.html">ホーム</a>
+  <a href="challenge.html">チャレンジ選択</a>
+</nav>
+<div class="progress" id="progress">チャレンジ　入力が命令になる</div>
+<div class="wrap">
+  <div class="card">
+    <h2>社員検索（模擬データベース）</h2>
+    <p>部署や氏名を入れると、下の表が変わります。同時に、プログラムが組み立てている検索文も変わります。入力した文字が、検索文の中へそのまま入っています。</p>
+    <form id="searchForm" class="stack" autocomplete="off">
+      <label for="q">部署や氏名</label>
+      <input id="q" type="text" autocomplete="off" spellcheck="false" placeholder="例：営業">
+      <button class="btn" type="submit">検索</button>
+    </form>
+    <div class="samples">
+      <button class="chip" type="button" data-sample="営業">営業</button>
+      <button class="chip" type="button" data-sample="人事">人事</button>
+      <button class="chip" type="button" data-sample="佐藤">佐藤</button>
+    </div>
+    <p class="muted" style="margin-top:14px">いまの検索文</p>
+    <div class="secret-box" id="queryView"></div>
+    <p id="searchNote" class="muted"></p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>社員ID</th><th>氏名</th><th>部署</th><th>備考</th></tr>
+        </thead>
+        <tbody id="resultBody"></tbody>
+      </table>
+    </div>
+    <details class="hint">
+      <summary>ヒント</summary>
+      <p>検索文は <code>部署 = 'ここに入力'</code> の形です。入力の先頭を <code>'</code> にすると、文字列がすぐに閉じます。そのあとに <code>OR</code> と、両辺が同じ比較（<code>'1'='1'</code> や <code>1=1</code>）を足すと、条件がいつも正しくなります。</p>
+    </details>
+  </div>
+
+  <div class="card stack" id="answer">
+    <h2>フラグを入力</h2>
+    <p class="muted">非公開の行に出た <code>FLAG{ }</code> の中のキーワードだけを入力してください。</p>
+    <form id="flagForm" autocomplete="off">
+      <label for="flagInput">キーワード</label>
+      <input id="flagInput" class="flag-input" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="キーワード">
+      <button class="btn" type="submit">回答する</button>
+    </form>
+    <div id="flagResult" class="result" role="status" aria-live="polite"></div>
+  </div>
+</div>
+<footer class="site">© みらい商事株式会社（架空）｜訓練用サンドボックス</footer>
+<script src="js/db-search.js"></script>
+<script src="js/gate.js"></script>
+<script src="js/challenge-check.js"></script>
+</body>
+</html>

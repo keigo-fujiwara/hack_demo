@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>みらい商事 社内ポータル（訓練用）</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="trainbar">⚠️ これはセキュリティ学習用の<strong>架空の訓練サイト</strong>です。表示される会社名・氏名・データはすべてダミーです。</div>
+<header class="site">
+  <div class="logo">みらい商事株式会社</div>
+  <div class="sub">社内ポータル / Employee Portal</div>
+</header>
+<nav class="main">
+  <a href="index.html">ホーム</a>
+</nav>
+<div class="progress" id="progress">ミッション 4 / 6　読めなくしたつもり</div>
+<div class="wrap">
+  <div class="card">
+    <h2>社内メモ</h2>
+    <p class="muted">担当者間の引き継ぎ用。あとで消すこと。</p>
+    <div class="secret-box" data-memo="56S+5aSW56eY44Oh44Oi772c5qyh5pyf44Od44O844K/44Or44Gu5Luu44OR44K544Ov44O844OJ44GvIE1pcmFpMjAyNSEg44Gn44GZ44CC5YWs6ZaL5YmN44Gr5b+F44Ga5YmK6Zmk44CCIEZMQUd7RU5DT0RJTkdfSVNfTk9UX0VOQ1JZUFRJT059">社内メモ（エンコード済み）: 56S+5aSW56eY44Oh44Oi772c5qyh5pyf44Od44O844K/44Or44Gu5Luu44OR44K544Ov44O844OJ44GvIE1pcmFpMjAyNSEg44Gn44GZ44CC5YWs6ZaL5YmN44Gr5b+F44Ga5YmK6Zmk44CCIEZMQUd7RU5DT0RJTkdfSVNfTk9UX0VOQ1JZUFRJT059</div>
+    <p class="muted">上の文字列は「読めなくした」つもりのメモです。本当に読めない？</p>
+    <div class="callout">右クリックから「検証」を開き、コンソールを選んでください。メニュー名は「デベロッパーツール」の場合もあります。コンソールで次を実行してみてください。<br><code>atob(document.querySelector('.secret-box').dataset.memo)</code></div>
+  </div>
+
+  <div class="card stack" id="answer">
+    <h2>フラグを入力</h2>
+    <p class="muted">メモを読める形に戻し、<code>FLAG{ }</code> の中のキーワードだけを入力してください。正解すると次のミッションに進めます。</p>
+    <form id="flagForm" autocomplete="off">
+      <label for="flagInput">キーワード</label>
+      <input id="flagInput" class="flag-input" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="キーワード">
+      <button class="btn" type="submit">回答する</button>
+    </form>
+    <div id="flagResult" class="result" role="status" aria-live="polite"></div>
+  </div>
+</div>
+<footer class="site">© みらい商事株式会社（架空）｜訓練用サンドボックス</footer>
+<script src="js/gate.js"></script>
+<script src="js/m4-check.js"></script>
+</body>
+</html>

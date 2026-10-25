@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>社員情報 1005（訓練用）</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="trainbar">⚠️ これはセキュリティ学習用の<strong>架空の訓練サイト</strong>です。表示される会社名・氏名・データはすべてダミーです。</div>
+<header class="site">
+  <div class="logo">みらい商事株式会社</div>
+  <div class="sub">社内ポータル / Employee Portal</div>
+</header>
+<nav class="main">
+  <a href="../index.html">ホーム</a>
+  <a href="../jinji-meibo.html">社員名簿</a>
+</nav>
+<div class="progress" id="progress">ミッション 6 / 6　番号を変えると…</div>
+<div class="wrap">
+  <div class="card">
+    <h2>社員情報｜伊藤 健</h2>
+    <table>
+      <tr><th>社員ID</th><td>1005</td></tr>
+      <tr><th>氏名</th><td>伊藤 健（架空）</td></tr>
+      <tr><th>部署</th><td>経理部（給与データ）</td></tr>
+      <tr><th>社内メール</th><td>ito@mirai-shoji.example</td></tr>
+      <tr><th>内線</th><td>2501</td></tr>
+    </table>
+    <p class="muted" style="margin-top:10px">URL: shain/1005.html ／ このページには本来アクセス制限が必要です。名簿にはリンクがありません。</p>
+    <p style="margin-top:12px">このページのフラグ： <span class="flag">FLAG{PREDICTABLE_ID_LEAK}</span></p>
+    <div class="callout">アドレスの番号を変えるだけで、名簿にない人の個人情報まで見られてしまいました。これが「連番ID＋認証なし」による情報漏洩です。</div>
+  </div>
+
+  <div class="card stack" id="answer">
+    <h2>フラグを入力</h2>
+    <p class="muted">上に出ている <code>FLAG{ }</code> の中のキーワードだけを入力してください。正解すると解説ページに進めます。</p>
+    <form id="flagForm" autocomplete="off">
+      <label for="flagInput">キーワード</label>
+      <input id="flagInput" class="flag-input" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="キーワード">
+      <button class="btn" type="submit">回答する</button>
+    </form>
+    <div id="flagResult" class="result" role="status" aria-live="polite"></div>
+  </div>
+</div>
+<footer class="site">© みらい商事株式会社（架空）｜訓練用サンドボックス</footer>
+<script src="../js/gate.js"></script>
+<script src="../js/m6-check.js"></script>
+</body>
+</html>

@@ -14,10 +14,11 @@
 </header>
 <nav class="main">
   <a href="index.html">ホーム</a>
-  <a href="index.html#news">お知らせ</a>
-  <a href="index.html#link">社内リンク</a>
-  <a href="index.html#login">ログイン</a>
+  <a href="#news">お知らせ</a>
+  <a href="#link">社内リンク</a>
+  <a href="#login">ログイン</a>
 </nav>
+<div class="progress" id="progress">ミッション 1 / 6　消し忘れたメモ</div>
 <div class="wrap">
 
   <!-- ============================================================= -->
@@ -40,9 +41,6 @@
       <li>【総務】年末年始の休業期間について</li>
       <li>【情シス】パスワードは定期的に変更してください</li>
     </ul>
-    <!-- 社外秘メモ（担当者間の引き継ぎ用・あとで消す）: 下の文字列をデコードして確認してね -->
-    <div class="secret-box" data-memo="56S+5aSW56eY44Oh44Oi772c5qyh5pyf44Od44O844K/44Or44Gu5Luu44OR44K544Ov44O844OJ44GvIE1pcmFpMjAyNSEg44Gn44GZ44CC5YWs6ZaL5YmN44Gr5b+F44Ga5YmK6Zmk44CCIEZMQUd7RU5DT0RJTkdfSVNfTk9UX0VOQ1JZUFRJT059">社内メモ（エンコード済み）: 56S+5aSW56eY44Oh44Oi772c5qyh5pyf44Od44O844K/44Or44Gu5Luu44OR44K544Ov44O844OJ44GvIE1pcmFpMjAyNSEg44Gn44GZ44CC5YWs6ZaL5YmN44Gr5b+F44Ga5YmK6Zmk44CCIEZMQUd7RU5DT0RJTkdfSVNfTk9UX0VOQ1JZUFRJT059</div>
-    <p class="muted">※上の文字列は「読めなくした」つもりのメモです。本当に読めない？</p>
   </div>
 
   <div class="card" id="link">
@@ -54,7 +52,7 @@
     </ul>
   </div>
 
-  <div class="card login" id="login">
+  <div class="card login stack" id="login">
     <h2>社員ログイン</h2>
     <form id="loginForm">
       <label for="uid">社員ID</label>
@@ -63,11 +61,24 @@
       <input id="pw" type="password" autocomplete="off" placeholder="パスワード">
       <button class="btn" type="submit">ログイン</button>
     </form>
-    <div id="loginResult" class="result"></div>
+    <div id="loginResult" class="result" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="card stack" id="answer">
+    <h2>フラグを入力</h2>
+    <p class="muted">表示された <code>FLAG{ }</code> の中のキーワードだけを入力してください。正解すると次のミッションに進めます。</p>
+    <form id="flagForm" autocomplete="off">
+      <label for="flagInput">キーワード</label>
+      <input id="flagInput" class="flag-input" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="キーワード">
+      <button class="btn" type="submit">回答する</button>
+    </form>
+    <div id="flagResult" class="result" role="status" aria-live="polite"></div>
   </div>
 
 </div>
 <footer class="site">© みらい商事株式会社（架空）｜訓練用サンドボックス</footer>
-<script src="js/app.js"></script>
+<script src="js/gate.js"></script>
+<script src="js/login.js"></script>
+<script src="js/m1-check.js"></script>
 </body>
 </html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>みらい商事 社内ポータル（訓練用）</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="trainbar">⚠️ これはセキュリティ学習用の<strong>架空の訓練サイト</strong>です。表示される会社名・氏名・データはすべてダミーです。</div>
+<header class="site">
+  <div class="logo">みらい商事株式会社</div>
+  <div class="sub">社内ポータル / Employee Portal</div>
+</header>
+<nav class="main">
+  <a href="index.html">ホーム</a>
+</nav>
+<div class="progress" id="progress">ミッション 3 / 6　プログラムの中の鍵</div>
+<div class="wrap">
+  <div class="card">
+    <h2>外部サービス接続設定</h2>
+    <p>情報システム部が、社内ポータルから外部APIへ接続するための設定です。接続に使う鍵は、このページが読み込んでいるプログラムの中に書かれています。</p>
+    <div class="callout">右クリックから「検証」を開いてください。メニュー名は「デベロッパーツール」の場合もあります。「ソース」から読み込まれているJavaScriptを開くか、アドレスのファイル名を <code>js/api-config.js</code> に変えて開いてください。</div>
+  </div>
+
+  <div class="card stack" id="answer">
+    <h2>フラグを入力</h2>
+    <p class="muted">プログラムの中で見つけた <code>FLAG{ }</code> の中のキーワードだけを入力してください。正解すると次のミッションに進めます。</p>
+    <form id="flagForm" autocomplete="off">
+      <label for="flagInput">キーワード</label>
+      <input id="flagInput" class="flag-input" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="キーワード">
+      <button class="btn" type="submit">回答する</button>
+    </form>
+    <div id="flagResult" class="result" role="status" aria-live="polite"></div>
+  </div>
+</div>
+<footer class="site">© みらい商事株式会社（架空）｜訓練用サンドボックス</footer>
+<script src="js/api-config.js"></script>
+<script src="js/gate.js"></script>
+<script src="js/m3-check.js"></script>
+</body>
+</html>

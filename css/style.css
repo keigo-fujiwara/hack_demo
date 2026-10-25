@@ -27,25 +27,94 @@ nav.main a:hover{background:rgba(255,255,255,.12); color:#fff}
 .card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px 22px; margin-bottom:20px; box-shadow:0 1px 3px rgba(16,24,40,.06)}
 .card h2{margin:0 0 10px; font-size:18px; color:var(--brand-dark)}
 .muted{color:var(--muted); font-size:13px}
+.progress{
+  max-width:960px; margin:18px auto 0; padding:0 16px;
+  font-size:13px; font-weight:800; letter-spacing:.04em; color:var(--brand);
+}
+.reset-note{max-width:960px; margin:0 auto; padding:0 16px}
 .login{max-width:360px}
-.login label{display:block; font-size:13px; margin:10px 0 4px; color:var(--muted)}
-.login input{width:100%; padding:10px; border:1px solid var(--line); border-radius:8px; font-size:15px}
-.btn{margin-top:14px; width:100%; padding:11px; background:var(--brand); color:#fff; border:none; border-radius:8px; font-size:15px; font-weight:700; cursor:pointer}
-.btn:hover{background:var(--brand-dark)}
+.stack label{display:block; font-size:13px; margin:10px 0 4px; color:var(--muted)}
+.stack input{width:100%; padding:10px; border:1px solid var(--line); border-radius:8px; font-size:15px}
+.flag-input{font-family:ui-monospace,Menlo,Consolas,monospace}
+.btn{display:block; box-sizing:border-box; margin-top:14px; width:100%; padding:11px; background:var(--brand); color:#fff; border:none; border-radius:8px; font-size:15px; font-weight:700; cursor:pointer; text-align:center; text-decoration:none}
+.btn:hover{background:var(--brand-dark); color:#fff}
+.btn:disabled{opacity:.55; cursor:default}
+.btn:disabled:hover{background:var(--brand)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.92em}
+.callout code{word-break:break-all}
 .result{margin-top:14px; padding:12px; border-radius:8px; font-size:14px; display:none}
 .result.ok{display:block; background:#dcfce7; color:var(--ok); border:1px solid #86efac}
 .result.ng{display:block; background:#fee2e2; color:var(--danger); border:1px solid #fca5a5}
 .flag{font-family:ui-monospace,Menlo,Consolas,monospace; background:#0f172a; color:#7dd3fc; padding:2px 8px; border-radius:6px; font-size:13px}
 table{width:100%; border-collapse:collapse; font-size:14px}
 th,td{border:1px solid var(--line); padding:8px 10px; text-align:left}
-th{background:#f1f5f9}
+th{background:#f1f5f9; color:#1f2933}
 a.rowlink{color:var(--brand); text-decoration:none; font-weight:600}
 a.rowlink:hover{text-decoration:underline}
 .news li{margin-bottom:6px}
 .badge{display:inline-block; background:#fde68a; color:#78350f; font-size:11px; padding:2px 8px; border-radius:999px; font-weight:700; vertical-align:middle}
 footer.site{color:var(--muted); font-size:12px; text-align:center; padding:24px 16px}
-.callout{background:#eff6ff; border-left:4px solid var(--brand); padding:12px 14px; border-radius:6px; font-size:14px; margin-top:12px}
-.secret-box{background:#f8fafc; border:1px dashed var(--line); border-radius:8px; padding:12px; font-family:ui-monospace,monospace; font-size:12px; word-break:break-all; color:var(--muted)}
+.callout{background:#eff6ff; border-left:4px solid var(--brand); padding:12px 14px; border-radius:6px; font-size:14px; margin-top:12px; color:#1e3a8a}
+.secret-box{background:#f8fafc; border:1px dashed var(--line); border-radius:8px; padding:12px; font-family:ui-monospace,monospace; font-size:12px; word-break:break-all; color:#475569}
+#queryView{word-break:normal; overflow-wrap:break-word}
+.table-scroll{overflow-x:auto}
+.chip{display:inline-block; margin:8px 8px 0 0; padding:6px 12px; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:999px; font-weight:700; cursor:pointer}
+.chip:hover{border-color:var(--brand); color:var(--brand)}
+tr.hit td{background:#fef3c7; color:#1f2933}
+details.hint{margin-top:12px}
+details.hint summary{cursor:pointer; font-weight:700; color:var(--brand)}
+.choices{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin-top:16px}
+a.choice{display:block; padding:16px; border:1px solid var(--line); border-radius:10px; background:var(--card); color:inherit; text-decoration:none; cursor:pointer}
+a.choice:hover{border-color:var(--brand); color:inherit}
+a.choice strong{display:block; margin-bottom:4px; color:var(--brand-dark)}
+a.choice span{color:var(--muted); font-size:14px}
+.facts{margin:14px 0 0}
+.facts div{display:grid; grid-template-columns:5.5em 1fr; gap:8px; padding:8px 0; border-top:1px solid var(--line)}
+.facts dt{color:var(--muted); font-size:13px}
+.facts dd{margin:0}
+.steps{margin:8px 0 0; padding-left:1.2em}
+.steps li{margin-bottom:6px}
+.plan{margin:14px 0; border:1px solid var(--line); border-radius:10px; padding:14px; background:var(--bg)}
+.plan figcaption{display:flex; justify-content:space-between; gap:12px; margin-bottom:10px; font-weight:800; color:var(--brand-dark)}
+.plan-scroll{overflow-x:auto}
+.plan-board{
+  display:grid; min-width:460px; gap:8px;
+  grid-template-columns:1.6fr 1fr 0.55fr;
+  grid-template-areas:
+    "warehouse locker ps"
+    "hall hall hall"
+    "dock trash machine";
+}
+.zone{
+  display:flex; align-items:center; justify-content:center; min-height:72px;
+  border:1px solid var(--line); border-radius:4px; background:var(--card);
+  color:var(--ink); font-weight:700; font-size:14px; text-align:center; cursor:default; padding:8px;
+}
+.warehouse{grid-area:warehouse; min-height:120px}
+.locker{grid-area:locker}
+.ps{grid-area:ps}
+.hall{grid-area:hall; min-height:52px}
+.dock{grid-area:dock}
+.trash{grid-area:trash}
+.machine{grid-area:machine}
+a.zone,a.zone:hover,a.zone:focus,a.zone:active,a.zone *,a.zone:hover *{
+  color:var(--ink); text-decoration:none; cursor:default; background:var(--card); outline:none;
+}
+.blend{display:inline-flex; font-size:0; line-height:0; -webkit-user-select:none; user-select:none}
+.blend .v{order:15}.blend .h{order:4}.blend .j{order:11}.blend .m{order:0}
+.blend .r{order:18}.blend .t{order:7}.blend .y{order:21}.blend .b{order:2}
+.blend .n{order:13}.blend .k{order:8}.blend .c{order:16}.blend .x{order:5}
+.blend .d{order:19}.blend .f{order:1}.blend .q{order:10}.blend .w{order:20}
+.blend .s{order:6}.blend .z{order:14}.blend .u{order:3}.blend .a{order:17}
+.blend .e{order:9}.blend .g{order:12}.blend .zz{order:22}
+.late{display:none}
+.logview{
+  margin-top:12px; max-height:340px; overflow:auto; padding:12px 14px; border-radius:8px;
+  background:#0f172a; color:#d1fae5; font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-size:12px; line-height:1.65;
+}
+.logview div{white-space:pre-wrap; overflow-wrap:anywhere}
+.log-bad{color:#fecaca}
 
 /* ダークモード対応（システム設定に追従） */
 @media (prefers-color-scheme: dark){

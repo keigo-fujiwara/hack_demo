@@ -4,5 +4,3 @@
 
 User-agent: *
 Disallow: /kanri-dashboard.html
-Disallow: /shain/
-Disallow: /backup/
