@@ -19,13 +19,13 @@
 <div class="wrap">
   <div class="card">
     <h2>外部サービス接続設定</h2>
-    <p>情報システム部が、社内ポータルから外部APIへ接続するための設定です。接続に使う鍵は、このページが読み込んでいるプログラムの中に書かれています。</p>
-    <div class="callout">右クリックから「検証」を開いてください。メニュー名は「デベロッパーツール」の場合もあります。「ソース」から読み込まれているJavaScriptを開くか、アドレスのファイル名を <code>js/api-config.js</code> に変えて開いてください。</div>
+    <p>情報システム部が、社内ポータルから外部のサービスへ接続するための設定です。APIは、そのサービスに「このデータをください」と頼む窓口です。窓口を使う合言葉が、このページが読み込んでいるプログラムの中に書かれています。</p>
+    <div class="callout">右クリックから「検証」を開いてください。「ソース」を開き、このページが読み込んでいる JavaScript を開いてください。</div>
   </div>
 
   <div class="card stack" id="answer">
     <h2>フラグを入力</h2>
-    <p class="muted">プログラムの中で見つけた <code>FLAG{ }</code> の中のキーワードだけを入力してください。正解すると次のミッションに進めます。</p>
+    <p class="muted">プログラムの中で見つけた <code>FLAG{ }</code> の中のキーワードだけを入力してください。キーワードが正解すると、漏れているコードを直す欄が出ます。修正が通ると次へ進めます。</p>
     <form id="flagForm" autocomplete="off">
       <label for="flagInput">キーワード</label>
       <input id="flagInput" class="flag-input" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="キーワード">

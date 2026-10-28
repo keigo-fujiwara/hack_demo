@@ -14,18 +14,19 @@
 <div class="wrap">
   <div class="card">
     <h2>🎓 ネタばらし｜なぜ漏れた？ どう防ぐ？</h2>
-    <p>今日見つけた“漏洩”は、すべて<strong>実際の情報漏洩でよくある原因</strong>です。
-       各ページでは <code>FLAG{ }</code> の中のキーワードを入力し、正解した人だけが次のミッションへ進みました。
+    <p>今日見つけた漏洩は、すべて<strong>実際の情報漏洩でよくある原因</strong>です。
        共通点は「ブラウザに届いた情報は、利用者からはすべて見える」ということ。</p>
+    <div class="table-scroll explain">
     <table>
-      <tr><th>#</th><th>原因</th><th>どう漏れたか</th><th>フラグ</th><th>守り方</th></tr>
-      <tr><td>1</td><td>HTMLコメントの消し忘れ</td><td>「ソースを表示」でコメント内の仮パスワードが読めた</td><td><span class='flag'>FLAG{COMMENT_LEAK}</span></td><td>コメントやメモをHTML/JSに残さない。公開前にレビューで除去。秘密情報はソースに書かない。</td></tr>
-<tr><td>2</td><td>robots.txt を“隠し場所”と誤解</td><td>robots.txtに書いた管理画面URLに誰でも直接アクセスできた</td><td><span class='flag'>FLAG{ROBOTS_IS_NOT_SECURITY}</span></td><td>robots.txtは検索除けであり、アクセス制御ではない。重要ページは必ずログイン認証で守る。</td></tr>
-<tr><td>3</td><td>JSにAPIキーをハードコード</td><td>api-config.jsを開くと管理者APIキーが丸見えだった</td><td><span class='flag'>FLAG{NEVER_HARDCODE_SECRETS}</span></td><td>鍵やパスワードはフロントに置かない。サーバー側で管理し、環境変数やシークレット管理を使う。</td></tr>
-<tr><td>4</td><td>エンコード≠暗号化</td><td>base64は誰でもデコードできる。atob()で中身が読めた</td><td><span class='flag'>FLAG{ENCODING_IS_NOT_ENCRYPTION}</span></td><td>base64は“変換”であって秘匿ではない。本当に守るなら暗号化し、鍵を安全に管理する。</td></tr>
-<tr><td>5</td><td>ブラウザ保存領域に機密</td><td>localStorageに保存したセッション情報が開発者ツールで見えた</td><td><span class='flag'>FLAG{CLIENT_STORAGE_IS_VISIBLE}</span></td><td>localStorage/Cookieは利用者が読める。機密やトークンの扱いは最小限にし、適切な属性で保護する。</td></tr>
-<tr><td>6</td><td>連番ID＋認証なし</td><td>名簿は3人だけだったが、URLの番号を変えると1004、1005の個人情報まで見えた。フラグは1005</td><td><span class='flag'>FLAG{PREDICTABLE_ID_LEAK}</span>（入力は PREDICTABLE_ID_LEAK）</td><td>ID推測だけで他人のデータに届かないよう、1件ごとにアクセス権限をサーバーで確認する。</td></tr>
+      <tr><th>#</th><th>問題点</th><th>どう漏れたか</th><th>守り方</th></tr>
+      <tr><td>1</td><td>HTMLコメントの消し忘れ</td><td>「ソースを表示」で、コメントの中の仮パスワードが読めた</td><td>コメントやメモをHTMLやJavaScriptに残さない。公開前に確認して消す。秘密はソースに書かない。</td></tr>
+      <tr><td>2</td><td>robots.txt を隠し場所だと思った</td><td>robots.txt に書いた管理画面のURLへ、誰でも直接開けた</td><td>robots.txt は検索結果に出さないお願いであり、鍵ではない。重要なページはログインで守る。</td></tr>
+      <tr><td>3</td><td>接続の合言葉を JavaScript に書いた</td><td>ほかのサービスへ頼む窓口（API）の合言葉が、ページといっしょに届く JavaScript に書いてあった。検証の「ソース」で開くと読めた</td><td>合言葉（APIキー）はサーバーに置く。ブラウザへ送る JavaScript には書かない。ブラウザはサーバーに頼み、サーバーが合言葉を使って窓口へつなぐ。</td></tr>
+      <tr><td>4</td><td>文字の変換を、暗号化だと思った</td><td>atob で、ページに残っていた文字列が元の文章に戻った。鍵は要らなかった</td><td>並びを変えただけでは秘密にならない。秘密そのものはサーバーで暗号化して保管し、ページには置かない。</td></tr>
+      <tr><td>5</td><td>ブラウザの保存領域に秘密を置いた</td><td>localStorage に保存したセッション情報が、検証画面から見えた</td><td>localStorage や Cookie は、そのブラウザの利用者から読める。秘密やトークンは置かない。</td></tr>
+      <tr><td>6</td><td>番号を変えると、他人のページが開いた</td><td>名簿は3人だけだったが、URLの番号を変えると、載っていない人の情報まで見えた</td><td>番号を知っているだけでは開けないようにする。1件ごとに、見る権限をサーバーで確認する。</td></tr>
     </table>
+    </div>
     <div class="callout" style="margin-top:16px">
       <strong>もう一つの気づき：</strong>
       フラグの正解判定は、このサイトのJavaScriptの中で行っています。

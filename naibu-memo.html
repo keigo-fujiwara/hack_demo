@@ -22,12 +22,12 @@
     <p class="muted">担当者間の引き継ぎ用。あとで消すこと。</p>
     <div class="secret-box" data-memo="56S+5aSW56eY44Oh44Oi772c5qyh5pyf44Od44O844K/44Or44Gu5Luu44OR44K544Ov44O844OJ44GvIE1pcmFpMjAyNSEg44Gn44GZ44CC5YWs6ZaL5YmN44Gr5b+F44Ga5YmK6Zmk44CCIEZMQUd7RU5DT0RJTkdfSVNfTk9UX0VOQ1JZUFRJT059">社内メモ（エンコード済み）: 56S+5aSW56eY44Oh44Oi772c5qyh5pyf44Od44O844K/44Or44Gu5Luu44OR44K544Ov44O844OJ44GvIE1pcmFpMjAyNSEg44Gn44GZ44CC5YWs6ZaL5YmN44Gr5b+F44Ga5YmK6Zmk44CCIEZMQUd7RU5DT0RJTkdfSVNfTk9UX0VOQ1JZUFRJT059</div>
     <p class="muted">上の文字列は「読めなくした」つもりのメモです。本当に読めない？</p>
-    <div class="callout">右クリックから「検証」を開き、コンソールを選んでください。メニュー名は「デベロッパーツール」の場合もあります。コンソールで次を実行してみてください。<br><code>atob(document.querySelector('.secret-box').dataset.memo)</code></div>
+    <div class="callout">右クリックから「検証」を開き、コンソールを選んでください。コンソールで次を実行してみてください。<br><code>atob(document.querySelector('.secret-box').dataset.memo)</code></div>
   </div>
 
   <div class="card stack" id="answer">
     <h2>フラグを入力</h2>
-    <p class="muted">メモを読める形に戻し、<code>FLAG{ }</code> の中のキーワードだけを入力してください。正解すると次のミッションに進めます。</p>
+    <p class="muted">メモを読める形に戻し、<code>FLAG{ }</code> の中のキーワードだけを入力してください。キーワードが正解すると、漏れているコードを直す欄が出ます。修正が通ると次へ進めます。</p>
     <form id="flagForm" autocomplete="off">
       <label for="flagInput">キーワード</label>
       <input id="flagInput" class="flag-input" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="キーワード">

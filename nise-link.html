@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>みらい商事 社内ポータル（訓練用）</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="trainbar">⚠️ これはセキュリティ学習用の<strong>架空の訓練サイト</strong>です。表示される会社名・氏名・データはすべてダミーです。</div>
+<header class="site">
+  <div class="logo">みらい商事株式会社</div>
+  <div class="sub">社内ポータル / Employee Portal</div>
+</header>
+<nav class="main">
+  <a href="index.html">ホーム</a>
+  <a href="challenge.html">チャレンジ選択</a>
+</nav>
+<div class="progress">チャレンジ　本物のリンクを選ぶ</div>
+<div class="wrap">
+  <div class="card">
+    <h2>届いたログイン案内</h2>
+    <p>情シスからの本物のログインアドレスは、次の1つだけです。</p>
+    <p class="real-url"><code id="realHost">https://portal.mirai-shoji.example/login</code></p>
+    <p>似たアドレスが届きました。本物だけをクリックしてください。チャンスは3回です。</p>
+    <p class="count-lg" id="chances" aria-live="polite">3</p>
+    <p class="muted">残り回数</p>
+    <div class="url-list">
+      <button type="button">https://portaI.mirai-shoji.example/login</button>
+      <button type="button">https://porta1.mirai-shoji.example/login</button>
+      <button type="button">https://portai.mirai-shoji.example/login</button>
+      <button type="button">https://portal.mIrai-shoji.example/login</button>
+      <button type="button">https://portal.mira1-shoji.example/login</button>
+      <button type="button">https://portal.miral-shoji.example/login</button>
+      <button type="button">https://portal.mirai-shojI.example/login</button>
+      <button type="button">https://portal.mirai-shoji.example/login</button>
+      <button type="button">https://portal.mirai-shouji.example/login</button>
+      <button type="button">https://portal.mirai-shoji.exampIe/login</button>
+      <button type="button">https://portal.mirai-shoji.examp1e/login</button>
+      <button type="button">https://portal.mirai-shoji.example/Iogin</button>
+      <button type="button">https://portal.mirai-shoji.example/logIn</button>
+      <button type="button">https://portal.mirai-shoji.example.com/login</button>
+      <button type="button">https://portal.mirai-shoji.example.secure-check.test/login</button>
+    </div>
+  </div>
+</div>
+
+<div id="miss" class="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="missTitle">
+    <h2 id="missTitle">外れ</h2>
+    <p>このアドレスは本物ではありません。</p>
+    <p id="missWhy"></p>
+    <p id="missLeft"></p>
+    <button type="button" class="btn" id="missClose">閉じる</button>
+  </div>
+</div>
+
+<div id="out" class="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="outTitle">
+    <h2 id="outTitle">OUT</h2>
+    <p>3回外れました。</p>
+    <p id="outWhy"></p>
+    <div class="modal-actions">
+      <button type="button" class="btn" id="retry">再挑戦</button>
+      <a class="btn" href="challenge.html">チャレンジ選択に戻る</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site">© みらい商事株式会社（架空）｜訓練用サンドボックス</footer>
+<script src="js/nise-link.js"></script>
+</body>
+</html>

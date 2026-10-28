@@ -21,14 +21,22 @@
     <h2>管理ダッシュボード</h2>
     <div class="callout">
       このページはログインしていなくても開けてしまいました。
-      <code>robots.txt</code> に「見せたくない」と書いても、URLを知っていれば誰でもアクセスできます。
+      <code>robots.txt</code> は検索エンジンへのお願いで、ページに鍵をかける仕組みではありません。
+    </div>
+    <div class="term">
+      <code class="line">User-agent: *</code>
+      <p>だれ宛てのメモか、を書きます。<code>*</code> は「すべての検索エンジン」です。Google だけ、とは書いていません。</p>
+    </div>
+    <div class="term">
+      <code class="line">Disallow: /kanri-dashboard.html</code>
+      <p>検索結果に出さないでほしいページです。ここにこの管理画面のファイル名が書いてあったので、アドレスの最後をその名前に変えると開けました。</p>
     </div>
     <p style="margin-top:12px">このページのフラグ： <span class="flag">FLAG{ROBOTS_IS_NOT_SECURITY}</span></p>
   </div>
 
   <div class="card stack" id="answer">
     <h2>フラグを入力</h2>
-    <p class="muted">上に出ている <code>FLAG{ }</code> の中のキーワードだけを入力してください。正解すると次のミッションに進めます。</p>
+    <p class="muted">上に出ている <code>FLAG{ }</code> の中のキーワードだけを入力してください。キーワードが正解すると、漏れているコードを直す欄が出ます。修正が通ると次へ進めます。</p>
     <form id="flagForm" autocomplete="off">
       <label for="flagInput">キーワード</label>
       <input id="flagInput" class="flag-input" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="キーワード">

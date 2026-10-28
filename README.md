@@ -22,20 +22,22 @@
 - `naibu-memo.html` … ミッション4（base64）
 - `session-hozon.html` / `js/session-demo.js` … ミッション5（localStorage）
 - `jinji-meibo.html` / `shain/1001〜1005.html` … ミッション6（名簿のリンクは1001〜1003。1004と1005は番号を変えると開く。フラグは1005）
-- `kaisetsu.html` … ミッション1〜6の解答と防御解説（チャレンジの答えは載せない）
+- `kaisetsu.html` … ミッション1〜6の問題点と守り方（フラグとチャレンジの答えは載せない）
 - `challenge.html` … チャレンジの選択
 - `db-kensaku.html` / `js/db-search.js` / `js/challenge-check.js` … チャレンジ「入力が命令になる」
 - `shanai-annai.html` / `shisetsu/b1-010.html` / `js/room-check.js` … チャレンジ「秘密の部屋を探す」（本社案内の平面図の一部にURLが埋まっている。ヒントなし。ポインターは変わらない）
 - `console-memo.html` / `js/console-demo.js` … チャレンジ「消し忘れたメモ」（コンソールにログが残る）
 - `kari-password.html` / `js/mask-fill.js` … チャレンジ「点々のパスワード」（欄の `type` を変えると点々が文字になる。HTMLにはフラグを書かない）
-- `mie-nai-moji.html` … チャレンジ「見えない文字」（文字をばらして大きさを 0 にする。大きさを外すとCSSの順で読める）
+- `mie-nai-moji.html` … チャレンジ「見えない文字」（文字を1文字ずつばらし、大きさを 0 にする。検証のHTMLを見ただけではフラグにならない。大きさを外すとCSSの順で読める）
 - `ato-kara.html` / `js/dom-inject.js` … チャレンジ「あとから増える文字」（画面には出さない。読み込み後の要素にだけ増える）
 - `batch-log.html` … チャレンジ「ログを読む」（止まった依頼の fragment を時刻順につなぐ）
+- `nise-link.html` / `nise-honmono.html` … チャレンジ「本物のリンクを選ぶ」（似たアドレスのうち本物だけが進む。外れはモーダル。3回で OUT。並びは毎回変わる）
+- `zoushoku.html` / `js/worm-sim.js` … チャレンジ「増殖を止める」（画面の表示だけが増える。関数一覧を見て30秒以内に止める1行を入力。正解後に各関数の解説。時間切れは再挑戦か選択へ戻る）
 - `js/gate.js` … フラグ判定（平文は持たず、SHA-256だけと比べる）
 - `js/login.js` … ミッション1のログイン
 - `js/m1-check.js` 〜 `js/m6-check.js` … 各ミッションの正解判定と、次へ進む案内
 - `css/style.css` … デザイン
 
-「回答する」を押して正解したときだけ、次のページへの案内が出ます。保存を消すときは `index.html?reset=1` を開きます。
+「回答する」でキーワードが正解したあと、漏れているコードを直して提出すると、次のページへの案内が出ます。保存を消すときは `index.html?reset=1` を開きます。
 
 詳しい進行・解答は「講師ガイド」を参照してください。

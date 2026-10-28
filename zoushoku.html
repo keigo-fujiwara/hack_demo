@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>みらい商事 社内ポータル（訓練用）</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="trainbar">⚠️ これはセキュリティ学習用の<strong>架空の訓練サイト</strong>です。表示される会社名・氏名・データはすべてダミーです。このページの増殖は、画面の表示だけです。</div>
+<header class="site">
+  <div class="logo">みらい商事株式会社</div>
+  <div class="sub">社内ポータル / Employee Portal</div>
+</header>
+<nav class="main">
+  <a href="index.html">ホーム</a>
+  <a href="challenge.html">チャレンジ選択</a>
+</nav>
+<div class="progress">チャレンジ　増殖を止める</div>
+<div class="wrap">
+  <div class="card">
+    <h2>増殖を止める</h2>
+    <p>このプログラムは、<code>timer</code> という名前で、1秒ごとにコピーを増やします。30秒以内に、止める1行を入力してください。</p>
+    <pre class="logview worm-code">var timer = setInterval(function () {
+  infect();
+}, 1000);</pre>
+    <p>使える関数は、次の6つです。この中から選んで、止める1行を入力してください。カッコの中は、上のプログラムを見て書きます。</p>
+    <ul class="fn-list">
+      <li><code>console.log(値)</code></li>
+      <li><code>setTimeout(関数, ミリ秒)</code></li>
+      <li><code>clearInterval(名前)</code></li>
+      <li><code>alert(文字)</code></li>
+      <li><code>setInterval(関数, ミリ秒)</code></li>
+      <li><code>clearTimeout(名前)</code></li>
+    </ul>
+    <p class="count-lg" id="remain" aria-live="polite">30</p>
+    <p class="muted">残り秒　感染 <strong id="liveCount">0</strong> 件</p>
+    <form id="stopForm" class="stack" autocomplete="off">
+      <label for="stopCode">止める1行</label>
+      <input id="stopCode" class="flag-input" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="止める1行">
+      <button class="btn" type="submit">止める</button>
+    </form>
+    <p id="stopNote" class="fix-note" role="status" aria-live="polite"></p>
+    <div id="stopOk" class="result ok" hidden>
+      <p id="stopOkText"></p>
+      <div id="fnExplain"></div>
+      <a class="btn" href="challenge.html">チャレンジ選択に戻る</a>
+    </div>
+    <div class="logview" id="infectLog" aria-live="polite"></div>
+  </div>
+</div>
+
+<div id="failModal" class="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="failTitle">
+    <h2 id="failTitle">増殖が止まりませんでした</h2>
+    <p>制限時間を過ぎたので、感染は広がり続けています。いま <strong id="failCount">0</strong> 件です。</p>
+    <div class="modal-actions">
+      <button type="button" class="btn" id="retry">再挑戦</button>
+      <a class="btn" id="back" href="challenge.html">チャレンジ選択に戻る</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site">© みらい商事株式会社（架空）｜訓練用サンドボックス</footer>
+<script src="js/worm-sim.js"></script>
+</body>
+</html>

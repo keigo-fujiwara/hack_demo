@@ -136,6 +136,7 @@
       localStorage.removeItem("mirai_bonus_css");
       localStorage.removeItem("mirai_bonus_dom");
       localStorage.removeItem("mirai_bonus_log");
+      localStorage.removeItem("mirai_bonus_phish");
     } catch (e) {}
     try {
       params.delete("reset");
@@ -170,12 +171,183 @@
     setClear(opts.mission);
   }
 
-  function showSuccess(box, input, form, html) {
-    box.className = "result ok";
-    box.innerHTML = html;
+  function utf8FromBytes(bytes) {
+    var out = "";
+    for (var i = 0; i < bytes.length; i++) {
+      var b = bytes[i];
+      if (b < 0x80) {
+        out += String.fromCharCode(b);
+      } else if (b < 0xe0) {
+        out += String.fromCharCode(((b & 0x1f) << 6) | (bytes[++i] & 0x3f));
+      } else if (b < 0xf0) {
+        out += String.fromCharCode(((b & 0x0f) << 12) | ((bytes[++i] & 0x3f) << 6) | (bytes[++i] & 0x3f));
+      } else {
+        var u = ((b & 0x07) << 18) | ((bytes[++i] & 0x3f) << 12) | ((bytes[++i] & 0x3f) << 6) | (bytes[++i] & 0x3f);
+        u -= 0x10000;
+        out += String.fromCharCode(0xd800 + (u >> 10), 0xdc00 + (u & 0x3ff));
+      }
+    }
+    return out;
+  }
+
+  function unveil(packed) {
+    var bin = atob(packed);
+    var bytes = [];
+    for (var i = 0; i < bin.length; i++) bytes.push(bin.charCodeAt(i) ^ 23);
+    return utf8FromBytes(bytes);
+  }
+
+  function plainFix(fix) {
+    if (!fix || !fix.packed) return fix;
+    return {
+      ask: fix.ask,
+      lead: fix.lead,
+      before: unveil(fix.before),
+      keep: fix.keep || [],
+      keepWhy: fix.keepWhy,
+      gone: (fix.gone || []).map(unveil),
+      goneWhy: fix.goneWhy,
+      need: fix.need || [],
+      needWhy: fix.needWhy,
+      forbid: fix.forbid || [],
+      lesson: fix.lesson || []
+    };
+  }
+
+  function decodeEntities(text) {
+    return String(text)
+      .replace(/&#x([0-9a-f]+);/gi, function (_, hex) {
+        var code = parseInt(hex, 16);
+        return code > 0 && code < 0x110000 ? String.fromCodePoint(code) : _;
+      })
+      .replace(/&#([0-9]+);/g, function (_, num) {
+        var code = parseInt(num, 10);
+        return code > 0 && code < 0x110000 ? String.fromCodePoint(code) : _;
+      });
+  }
+
+  function decodeBase64Chunks(text) {
+    var extra = [];
+    var re = /[A-Za-z0-9+/]{8,}={0,2}/g;
+    var found;
+    while ((found = re.exec(text))) {
+      try { extra.push(atob(found[0])); } catch (e) { /* 変換できない並びは無視する */ }
+    }
+    return extra.join("\n");
+  }
+
+  function foldSecret(text) {
+    return String(text).toLowerCase().replace(/[\s\-_]+/g, "");
+  }
+
+  function judgeFix(text, fix) {
+    var spec = plainFix(fix);
+    var value = String(text == null ? "" : text).replace(/^\s+|\s+$/g, "");
+    if (!value) return { ok: false, why: "空欄では提出できません。直すところだけ変えてください。" };
+    var before = String(spec.before || "").replace(/^\s+|\s+$/g, "");
+    if (value.replace(/\s+/g, "") === before.replace(/\s+/g, "")) {
+      return { ok: false, why: "まだ直っていません。漏れているところを直してから提出してください。" };
+    }
+    var expanded = foldSecret(decodeEntities(value) + "\n" + decodeBase64Chunks(decodeEntities(value)));
+    var gone = spec.gone || [];
+    for (var i = 0; i < gone.length; i++) {
+      if (expanded.indexOf(foldSecret(gone[i])) !== -1) {
+        return { ok: false, why: spec.goneWhy || "秘密の文字列が残っています。" };
+      }
+    }
+    var keep = spec.keep || [];
+    var lower = value.toLowerCase();
+    for (i = 0; i < keep.length; i++) {
+      if (lower.indexOf(String(keep[i]).toLowerCase()) === -1) {
+        return { ok: false, why: spec.keepWhy || "必要な部分まで消えています。直すところだけ変えてください。" };
+      }
+    }
+    var forbid = spec.forbid || [];
+    for (i = 0; i < forbid.length; i++) {
+      if (new RegExp(forbid[i].re, "i").test(value)) return { ok: false, why: forbid[i].why };
+    }
+    var need = spec.need || [];
+    for (i = 0; i < need.length; i++) {
+      if (!new RegExp(need[i], "i").test(value)) {
+        return { ok: false, why: spec.needWhy || "必要な修正が入っていません。" };
+      }
+    }
+    return { ok: true };
+  }
+
+  function lockAnswer(input, form) {
     if (input) input.disabled = true;
     var button = form ? form.querySelector("button") : null;
     if (button) button.disabled = true;
+  }
+
+  function showSuccess(box, input, form, html) {
+    box.className = "result ok";
+    box.innerHTML = html;
+    lockAnswer(input, form);
+  }
+
+  function showFix(box, input, form, opts) {
+    lockAnswer(input, form);
+    var spec = plainFix(opts.fix);
+    box.className = "result ok";
+    box.textContent = "";
+
+    var lead = root.document.createElement("p");
+    lead.textContent = spec.lead
+      ? spec.lead
+      : (spec.lesson && spec.lesson.length
+        ? "キーワードは正解です。さきほどの命令は、こう動いていました。"
+        : "キーワードは正解です。下のコードを直して、修正を提出してください。");
+    box.appendChild(lead);
+
+    (spec.lesson || []).forEach(function (item) {
+      var line = root.document.createElement("p");
+      line.className = "fix-lesson";
+      if (item.code) {
+        var code = root.document.createElement("code");
+        code.textContent = item.code;
+        line.appendChild(code);
+        line.appendChild(root.document.createTextNode(" " + (item.text || "")));
+      } else {
+        line.textContent = item.text || "";
+      }
+      box.appendChild(line);
+    });
+
+    var ask = root.document.createElement("p");
+    ask.textContent = spec.ask;
+    box.appendChild(ask);
+
+    var area = root.document.createElement("textarea");
+    area.className = "fix-code";
+    area.spellcheck = false;
+    area.setAttribute("wrap", "off");
+    area.setAttribute("autocapitalize", "off");
+    area.value = spec.before;
+    area.rows = Math.max(6, spec.before.split("\n").length + 1);
+    box.appendChild(area);
+
+    var button = root.document.createElement("button");
+    button.type = "button";
+    button.className = "btn fix-submit";
+    button.textContent = "修正を提出する";
+    box.appendChild(button);
+
+    var note = root.document.createElement("p");
+    note.className = "fix-note";
+    note.hidden = true;
+    box.appendChild(note);
+
+    button.addEventListener("click", function () {
+      var verdict = judgeFix(area.value, spec);
+      if (verdict.ok) {
+        showSuccess(box, input, form, opts.successHtml);
+        return;
+      }
+      note.hidden = false;
+      note.textContent = verdict.why;
+    });
   }
 
   function progress(mission, total, title) {
@@ -210,7 +382,8 @@
       }
       if (sha256Hex(value) === opts.hash) {
         markCleared(opts);
-        showSuccess(box, input, form, opts.successHtml);
+        if (opts.fix && opts.fix.before) showFix(box, input, form, opts);
+        else showSuccess(box, input, form, opts.successHtml);
       } else {
         box.className = "result ng";
         box.textContent = "キーワードが違います。大文字・小文字もそのまま入力してください。";
@@ -220,6 +393,7 @@
 
   root.MiraiGate = {
     sha256Hex: sha256Hex,
+    judgeFix: judgeFix,
     setup: setup,
     progress: progress,
     whenCleared: whenCleared
